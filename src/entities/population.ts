@@ -1,8 +1,11 @@
-import { random } from "../utils.js";
-import { Member } from "./member.js";
+import { random } from "../utils";
+import { Member } from "./member";
 
 class Population {
-  constructor(size = 1, target, mutationRate) {
+  private mutationRate;
+  public members: Member[];
+
+  constructor(size = 1, target: any, mutationRate: number) {
     this.members = [];
     this.mutationRate = mutationRate;
 
@@ -12,7 +15,7 @@ class Population {
   }
 
   _generateMatingPoolBasedOnMembersFitness() {
-    const matingPool = [];
+    const matingPool: any[] = [];
 
     this.members.forEach((member) => {
       const howMuchMembersToAdd = Math.floor(member.fitness() * 100) || 1;
@@ -25,7 +28,7 @@ class Population {
     return matingPool;
   }
 
-  _reproduce(matingPool) {
+  _reproduce(matingPool: any[]) {
     for (let i = 0; i < this.members.length; i += 1) {
       const parentA = matingPool[random(0, matingPool.length)];
       const parentB = matingPool[random(0, matingPool.length)];
@@ -38,7 +41,7 @@ class Population {
     }
   }
 
-  evolve(generations) {
+  evolve(generations: any) {
     for (let i = 0; i < generations; i += 1) {
       const pool = this._generateMatingPoolBasedOnMembersFitness();
       this._reproduce(pool);

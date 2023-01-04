@@ -1,7 +1,10 @@
-import { generateLetter, random } from "../utils.js";
+import { generateLetter, random } from "../utils";
 
 class Member {
-  constructor(target) {
+  private target;
+  public keys;
+
+  constructor(target: any) {
     this.target = target;
     this.keys = [];
 
@@ -29,7 +32,7 @@ class Member {
     return match / this.target.length;
   }
 
-  crossover(partner) {
+  crossover(partner: Member) {
     const { length } = this.target;
     const child = new Member(this.target);
     const midpoint = random(0, length);
@@ -45,7 +48,7 @@ class Member {
     return child;
   }
 
-  mutate(mutationRate) {
+  mutate(mutationRate: number) {
     for (let i = 0; i < this.keys.length; i += 1) {
       if (Math.random() < mutationRate) {
         this.keys[i] = generateLetter();

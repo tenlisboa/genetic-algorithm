@@ -1,7 +1,12 @@
-import { Population } from "../entities/population.js";
+import { Population } from "../entities/population";
 
 class GA {
-  constructor(target, populationSize, mutationRate) {
+  public fitnessFunc: any;
+  private target;
+  private populationSize;
+  private mutationRate;
+  
+  constructor(target: any, populationSize: number, mutationRate: number) {
     this.fitnessFunc = null;
 
     this.target = target;
@@ -9,7 +14,7 @@ class GA {
     this.mutationRate = mutationRate;
   }
 
-  setFitnessFunc(fn) {
+  setFitnessFunc(fn: any) {
     this.fitnessFunc = fn;
   }
 
@@ -20,7 +25,7 @@ class GA {
       this.mutationRate
     );
 
-    let membersKeysTotal = [];
+    let membersKeysTotal: any[] = [];
     let perfectCandidatesNum = 0;
     while (perfectCandidatesNum <= 0) {
       population.evolve(20);

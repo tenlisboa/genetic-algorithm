@@ -1,6 +1,6 @@
-import { Population } from "./entities/population.js";
+import { Population } from "./entities/population";
 
-export function random(min, max) {
+export function random(min: number, max: number) {
   min = Math.ceil(min);
   max = Math.floor(max);
 
@@ -12,7 +12,7 @@ export function generateLetter() {
   return String.fromCharCode(code);
 }
 
-export function generate(target, options) {
+export function generate(target: any, options: any) {
   const population = new Population(
     options.populationSize,
     target,
