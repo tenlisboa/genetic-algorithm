@@ -1,6 +1,7 @@
-import { generateLetter, random } from "../utils";
+import { generateLetter, random } from "../../utils";
+import { Member } from "./member";
 
-class Member {
+class MemberImp implements Member {
   private target;
   public keys;
 
@@ -13,28 +14,13 @@ class Member {
     }
   }
 
-  /*
-    For refactoring, let the users decide its fitness
-  */
-  // fitness(callback) {
-  //   return callback(this);
-  // }
-
-  fitness() {
-    let match = 0;
-
-    for (let i = 0; i < this.keys.length; i++) {
-      if (this.keys[i] === this.target[i]) {
-        match += 1;
-      }
-    }
-
-    return match / this.target.length;
+  fitness(callback: Member.Fitness.Input): Member.Fitness.Output {
+    return callback(this);
   }
 
   crossover(partner: Member) {
     const { length } = this.target;
-    const child = new Member(this.target);
+    const child = new MemberImp(this.target);
     const midpoint = random(0, length);
 
     for (let i = 0; i < length; i += 1) {
@@ -57,4 +43,4 @@ class Member {
   }
 }
 
-export { Member };
+export { MemberImp };

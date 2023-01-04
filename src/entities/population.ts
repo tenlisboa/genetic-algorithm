@@ -1,5 +1,5 @@
 import { random } from "../utils";
-import { Member } from "./member";
+import { Member } from "./member/member";
 
 class Population {
   private mutationRate;
