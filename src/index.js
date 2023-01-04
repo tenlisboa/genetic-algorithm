@@ -1,7 +1,5 @@
-import { generate } from "./utils.js";
+import { GA } from "./services/ga.js";
 
-generate("hooper", {
-  populationSize: 20,
-  mutationRate: 0.05,
-  generations: 200,
-});
+const ga = new GA("gabriel", 30, 0.08);
+
+ga.run();
